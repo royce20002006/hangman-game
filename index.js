@@ -27,22 +27,17 @@ let gameState = () => {
         displayWord += '_';
       }
     }
-
-    
-    
     if (displayWord === word) {
       console.log('Congratulations! You guessed the word.');
       rl.question('Would you like to Play again (y or n) ', condition => {
         if (condition === 'y') gameState();
         else return rl.close();
       })
-     
-    } else {
+     } else {
       userGuesses();
     }
   }
-
-
+  
   let userGuesses = () => {
     console.log(displayWord);
     rl.question('Guess a letter ', letter => {
@@ -52,14 +47,12 @@ let gameState = () => {
           if (condition === 'y') gameState();
           else return rl.close();
         })
-
       }
       console.log(`You have ${numberOfAttempts} left.`)
       
       if (word.includes(letter) && !guessedLetter.includes(letter)) {
         guessedLetter.push(letter);
         incorrect.push(letter);
-
         wordState();
       } else {
         if (!incorrect.includes(letter)) {
@@ -67,16 +60,14 @@ let gameState = () => {
           incorrect.push(letter);
           console.log('try again')
           userGuesses();
-        }
-        else {
+        } else {
           console.log(`You already guessed this letter so your number of attempts did not change. Go ahead and try again.`)
           userGuesses();
         }
       }
     })
   }
-
-
   wordState();
 }
+
 gameState();
