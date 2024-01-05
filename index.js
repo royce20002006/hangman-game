@@ -14,11 +14,11 @@ let gameState = () => {
   let numberOfAttempts = 20;
   let guessedLetter = [];
   let incorrect = [];
-  let displayWord = ''
+  let displayWord;
   
 
   let wordState = () => {
-    
+    displayWord = '';
     for (let i = 0; i < word.length; i++) {
       if (guessedLetter.includes(word[i])) {
         arr.push(word[i])
@@ -40,14 +40,16 @@ let gameState = () => {
   
   let userGuesses = () => {
     console.log(displayWord);
+    console.log(`${incorrect.sort().join('')}`)
     rl.question('Guess a letter ', letter => {
-      if (numberOfAttempts < 0) {
+      if (numberOfAttempts === 0) {
         console.log(`Sorry, you've run out of attempts. The word was: ${word}`);
         rl.question('Would you like to Play again (y or n) ', condition => {
           if (condition === 'y') gameState();
           else return rl.close();
         })
       }
+      
       console.log(`You have ${numberOfAttempts} left.`)
       
       if (word.includes(letter) && !guessedLetter.includes(letter)) {
