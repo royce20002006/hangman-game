@@ -8,15 +8,17 @@ const rl = readline.createInterface({
 });
 
 let gameState = () => {
+  // set variables that will keep track of everything.. 
   let arr = [];
   let word = randomWord();
   let numberOfAttempts = 20;
   let guessedLetter = [];
   let incorrect = [];
+  let displayWord = ''
   
 
   let wordState = () => {
-    displayWord = ''
+    
     for (let i = 0; i < word.length; i++) {
       if (guessedLetter.includes(word[i])) {
         arr.push(word[i])
